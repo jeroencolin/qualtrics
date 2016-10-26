@@ -8,9 +8,9 @@
 #' @param endDate ending date range for results returned.
 #' @export
 getSurveyResults <- function(username, password, surveyid, 
-							 truncNames=20, startDate=NULL, endDate=NULL) {
+							 truncNames=20, startDate=NULL, endDate=NULL, labels=FALSE) {
 	url = paste("http://eu.qualtrics.com/Server/RestApi.php?Request=getResponseData&User=",
-		username, "&Password=", password, "&SurveyID=", surveyid, "&Format=CSV", 
+		username, "&Password=", password, "&SurveyID=", surveyid, "&Format=CSV","&Labels=",ifelse(labels,0,1),
 		ifelse(is.null(startDate), "", paste("&StartDate=", startDate, sep="")), 
 		ifelse(is.null(endDate), "", paste("&EndDate=", endDate, sep="")),
 		sep="")
